@@ -11,4 +11,4 @@ target_link_libraries(app PRIVATE hello)
 # Unit test target 
 add_executable(tests testmain.cpp)
 target_include_directories(tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/module_hello/inc) # make 3rd argument a list of modules with /inc suffix
-target_link_libraries(tests PRIVATE hello extlib)
+target_link_libraries(tests PRIVATE hello hello_test extlib)
