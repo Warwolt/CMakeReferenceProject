@@ -1,6 +1,6 @@
 #include <iostream>
 #include "hello.h"
-#include "extlib/extlib.h" // mock thirdparty dependency
+#include "extlib.h" // mock thirdparty dependency
 
 int main()
 {
