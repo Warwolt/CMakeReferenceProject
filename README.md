@@ -62,3 +62,4 @@ Where the  available targets are:
 
 ## Best practice references
 (TODO: add some links to the resources that this reference project is based on)
+- https://llvm.org/docs/CMakePrimer.html
