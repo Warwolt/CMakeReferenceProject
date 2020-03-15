@@ -1,13 +1,27 @@
 cmake_minimum_required(VERSION 3.16)
 project(Software)
 
-add_subdirectory(hello) # can subdirs be added autoamtically from a 'master list' of moduels?
-add_subdirectory(arithmetics)
+# Declare project submodules
+set(modules
+        hello
+        arithmetics)
+
+# Include each submodule
+foreach(module IN LISTS modules)
+    add_subdirectory(${module})
+endforeach()
+
+# Set target dependencies
+set(module_targets ${modules}) # module libs named after the modules themselves
+set(unit_test_targets ${modules}) # assume each module 'foo' has a 'foo_test'
+list(TRANSFORM unit_test_targets APPEND _test) # 'foo' -> 'foo_test'
+set(third_party_libs extlib)
 
 # Release target
 add_executable(app main.cpp) # todo mark this as a release target
-target_link_libraries(app PRIVATE hello arithmetics)
+target_link_libraries(app PRIVATE ${module_targets})
 
 # Unit test target
 add_executable(tests testmain.cpp)
-target_link_libraries(tests PRIVATE hello hello_test arithmetics arithmetics_test extlib) # use a master list of modules for these dependencies
+target_link_libraries(tests PRIVATE
+    ${module_targets} ${unit_test_targets} ${third_party_libs})
