@@ -30,6 +30,8 @@ macro(add_module_library)
     elseif(${ARG_TEST})
         # Module unit tests
         set(MODULE_TEST_NAME ${MODULE_NAME}_test)
+        include(CMakePrintHelpers)
+        cmake_print_variables(MODULE_TEST_NAME)
         list(TRANSFORM ARG_SOURCES PREPEND test/)
         add_library(${MODULE_TEST_NAME} STATIC ${ARG_SOURCES})
         target_link_libraries(${MODULE_TEST_NAME} PRIVATE ${MODULE_NAME})
