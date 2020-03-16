@@ -55,7 +55,7 @@ Where the  available targets are:
 | Target | Purpose                                      |
 |--------|----------------------------------------------|
 | app    | The project application                      |
-| tests  | Test runner will all of the unit test suites |
+| tests  | Test runner with all of the unit test suites |
 
 ## Project structure
 This project is module based, where a module can be described as a grouping of
@@ -71,10 +71,8 @@ helper scripts and need to be followed by developers.
 
 Each module `foo` is compiled into a static library `libfoo.a` for production
 code and `libfoo_test.a` for unit test code. These libraries are the used to
-link together the targets.
-
-The `app` target uses `main.cpp` as its entry point, and the `test` target uses
-`test_main.cpp` to call into Google Test.
+link together the targets. The `app` target uses `main.cpp` as its entry point,
+and the `test` target uses `test_main.cpp` to call into Google Test.
 
 An illustration of how the project structure is:
 
