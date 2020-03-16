@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(HelloCmake)
+project(HelloCmake CXX)
 
 # Force out-of-source builds (i.e don't allow building in project root)
 if(${PROJECT_SOURCE_DIR} STREQUAL ${PROJECT_BINARY_DIR})
@@ -13,7 +13,6 @@ endif()
 include(scripts/cmake/googletest_integrate.cmake)
 include_directories(${PROJECT_BINARY_DIR}/googletest-src/googletest/include)
 include_directories(${PROJECT_BINARY_DIR}/googletest-src/googlemock/include)
-enable_testing() # Needed?
 
 # Set compiler options
 set(CMAKE_CXX_STANDARD 17)
