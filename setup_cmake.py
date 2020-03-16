@@ -14,5 +14,9 @@ os.environ['CXX'] = "clang++"
 
 # Create build directory and run cmake
 os.system("mkdir -p build")
-os.chdir("build")
-os.system("cmake -G \"Unix Makefiles\" ..") # We want a 'Makefile' as output
+os.system("mkdir -p build/release")
+os.system("mkdir -p build/debug")
+os.chdir("build/release")
+os.system("cmake -G \"Unix Makefiles\" -DCMAKE_BUILD_TYPE=Release ../..")
+os.chdir("../debug")
+os.system("cmake -G \"Unix Makefiles\" -DCMAKE_BUILD_TYPE=Debug ../..")

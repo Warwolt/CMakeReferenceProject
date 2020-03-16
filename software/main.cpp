@@ -10,5 +10,7 @@ int main()
         sayHello();
     }
 
+    const int val = 17; // should not compile under -Wall
+
     return 0;
 }
