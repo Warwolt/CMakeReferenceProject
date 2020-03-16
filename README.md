@@ -26,12 +26,12 @@ To build the project the first time, use the helper script `setup_make.py`
 
 Linux/MacOS:
 ```
-./setup_make.py
+./setup_cmake.py
  ```
 
 Windows:
 ```
-setup_make.py
+setup_cmake.py
 ```
 
 This will generate GNU Make scripts adapted to your local environment, one for
