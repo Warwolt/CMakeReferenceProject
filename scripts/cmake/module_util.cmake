@@ -1,7 +1,8 @@
-# Assign the name of the current directory to the variable 'name_var'
-function(get_local_module_name name_var)
+##
+# Brief: Assign the name of the current directory to the variable 'name_var'
+function(get_local_module_name _name_var)
     get_filename_component(module_name ${CMAKE_CURRENT_SOURCE_DIR} NAME)
-    set(${name_var} ${module_name} PARENT_SCOPE)
+    set(${_name_var} ${module_name} PARENT_SCOPE)
 endfunction()
 
 ##
@@ -13,10 +14,11 @@ endfunction()
 # - MODULE:  Flag for module source library
 # - TEST:    Flag for module unit tests library
 # - SOURCES: A list of all source files names (e.g. foo.cpp bar.cpp)
+# - MODULE_DEPS: List of other modules that this module depends
 macro(add_module_library)
     # Parse arguments
     set(options MODULE TEST)
-    set(multiValueArgs SOURCES)
+    set(multiValueArgs SOURCES MODULE_DEPS)
     cmake_parse_arguments(ARG "${options}" "${oneValueArgs}"
                           "${multiValueArgs}" ${ARGN})
 
@@ -27,12 +29,14 @@ macro(add_module_library)
         list(TRANSFORM ARG_SOURCES PREPEND src/)
         add_library(${MODULE_NAME} STATIC ${ARG_SOURCES})
         target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc)
+        target_link_libraries(${MODULE_NAME} PUBLIC ${ARG_MODULE_DEPS})
     elseif(${ARG_TEST})
         # Module unit tests
         set(MODULE_TEST_NAME ${MODULE_NAME}_test)
         list(TRANSFORM ARG_SOURCES PREPEND test/)
         add_library(${MODULE_TEST_NAME} STATIC ${ARG_SOURCES})
-        target_link_libraries(${MODULE_TEST_NAME} PRIVATE ${MODULE_NAME})
+        target_link_libraries(${MODULE_TEST_NAME} PUBLIC ${MODULE_NAME})
         target_include_directories(${MODULE_TEST_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc)
+        target_link_libraries(${MODULE_TEST_NAME} PUBLIC ${ARG_MODULE_DEPS})
     endif()
 endmacro()

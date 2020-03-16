@@ -4,7 +4,10 @@ project(Arithmetics)
 
 add_module_library(MODULE SOURCES
     add.cpp
-    sub.cpp)
+    sub.cpp
+)
+
 add_module_library(TEST SOURCES
     add_test.cpp
-    sub_test.cpp)
+    sub_test.cpp
+)

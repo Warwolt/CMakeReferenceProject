@@ -19,9 +19,16 @@ set(third_party_libs extlib)
 
 # Release target
 add_executable(app main.cpp) # todo mark this as a release target
-target_link_libraries(app PRIVATE ${module_targets})
+target_link_libraries(app PUBLIC
+    ${module_targets}
+    ${third_party_libs}
+)
 
 # Unit test target
-add_executable(tests testmain.cpp)
-target_link_libraries(tests PRIVATE
-    ${module_targets} ${unit_test_targets} ${third_party_libs})
+add_executable(tests test_main.cpp)
+target_link_libraries(tests PUBLIC
+    gtest
+    ${module_targets}
+    ${unit_test_targets}
+    ${third_party_libs}
+)
