@@ -11,8 +11,8 @@ endfunction()
 # This macro acts as a wrapper for declaring a library target for a local
 # module, and for the module unit tests.
 #
-# - MODULE:  Flag for module source library
-# - TEST:    Flag for module unit tests library
+# - MODULE:  Flag for adding module source library
+# - TEST:    Flag for adding module unit tests library
 # - SOURCES: A list of all source files names (e.g. foo.cpp bar.cpp)
 # - MODULE_DEPS: List of other modules that this module depends
 macro(add_module_library)

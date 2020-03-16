@@ -10,7 +10,7 @@ int main()
         sayHello();
     }
 
-    const int val = 17; // should not compile under -Wall
+    const int val = 17; // this doesn't compile under -Werror
 
     return 0;
 }
